@@ -57,7 +57,7 @@
         <a class="button" style="width: 55px;">
           <input type="checkbox" v-model="daily.prioritydone[n]">
         </a>
-        <input class="input is-expanded" type="text" placeholder="Priority {{n + 1}}..." v-model="daily.priority[n]">
+        <input class="input is-expanded" type="text" v-bind:v-bind:placeholder="'Priority ' + n + 1 + '...'" v-model="daily.priority[n]">
       </p>
     </p>
 
@@ -141,20 +141,20 @@ export default {
         daily: {
           habitdone: false,
           habit: '',
-          greatful: ['', '', ''],
-          excited: ['', '', ''],
+          greatful: {0: '', 1: '', 2: ''},
+          excited: {0: '', 1: '', 2: ''},
           affirmation: '',
           focus: '',
           exercise: '',
-          prioritydone: [false, false, false, false, false],
-          priority: ['', '', '', '', ''],
-          schedule: ['', '', '', '', '', '', '', '', ''],
-          schedulehalf: ['', '', '', '', '', '', '', '', ''],
-          taskdone: [false, false, false, false, false, false, false, false],
-          task: ['', '', '', '', '', '', '', ''],
+          prioritydone: {0: false, 1: false, 2: false, 3: false, 4: false},
+          priority: {0: '', 1: '', 2: '', 3: '', 4: ''},
+          schedule: {0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: ''},
+          schedulehalf: {0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: ''},
+          taskdone: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false},
+          task: {0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: ''},
           notes: '',
-          wins: ['', '', ''],
-          improve: ['', '', '']
+          wins: {0: '', 1: '', 2: ''},
+          improve: {0: '', 1: '', 2: ''}
         }
       }
     }
@@ -164,12 +164,13 @@ export default {
     }
   },
   watch: {
-    daily: {
-      handler: function (daily) {
-        window.localStorage.setItem('plannr.space_daily', JSON.stringify(daily))
+    'daily': {
+      handler: function (val, oldVal) {
+        window.localStorage.setItem('plannr.space_daily', JSON.stringify(this.daily))
       },
       deep: true
     }
+
   },
   methods: {
     clear: function (event) {

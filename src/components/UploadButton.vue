@@ -1,6 +1,8 @@
 <template>
-  <input type="file" name="file" id="selectFiles" class="inputfile" v-model="files">
-  <label for="selectFiles" class="button is-primary is-large">Upload</label>
+  <span>
+    <input type="file" name="file" id="selectFiles" class="inputfile" v-on:change="files">
+    <label for="selectFiles" class="button is-primary is-large" id="upload">Upload</label>
+  </span>
 </template>
 
 <script>
@@ -13,7 +15,7 @@ export default {
       files: ''
     }
   },
-  watch: {
+  methods: {
     files: {
       handler: function (file) {
         var view = this.view

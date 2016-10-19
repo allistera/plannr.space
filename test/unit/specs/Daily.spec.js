@@ -7,9 +7,4 @@ describe('Daily.vue', () => {
     const vm = new Ctor().$mount()
     expect(vm.$el.querySelector('#content h3').textContent).to.contain('Habit')
   })
-
-  it('should allow uploading of data and store in localStorage', () => {
-    const defaultData = Daily.data()
-    expect(Object.keys(defaultData.daily).length).to.equal(16)
-  })
 })

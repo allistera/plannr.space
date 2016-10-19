@@ -1,5 +1,7 @@
 <template>
-  <button class="button is-primary is-large" v-on:click="download">Download</button>
+  <span>
+    <button class="button is-primary is-large" v-on:click="download" id="download">Download</button>
+  </span>
 </template>
 
 <script>

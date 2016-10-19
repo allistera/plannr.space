@@ -11,9 +11,9 @@
     </span>
 
     <div class="nav-right nav-menu">
-      <a v-link="{ path: '/daily', activeClass: 'is-active' }" class="nav-item">Daily</a>
-      <a v-link="{ path: '/weekly', activeClass: 'is-active' }" class="nav-item">Weekly</a>
-      <a v-link="{ path: '/monthly', activeClass: 'is-active' }" class="nav-item">Monthly</a>
+      <router-link to="/daily" class="nav-item" active-class="is-active">Daily</router-link>
+      <router-link to="/weekly" class="nav-item" active-class="is-active">Weekly</router-link>
+      <router-link to="/monthly" class="nav-item" active-class="is-active">Monthly</router-link>
     </div>
   </nav>
 </template>

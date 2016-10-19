@@ -2,13 +2,9 @@ import Vue from 'vue'
 import DownloadButton from 'src/components/DownloadButton'
 
 describe('DownloadButton.vue', () => {
-  it('should render download button', () => {
+  it('should render upload button', () => {
     const Ctor = Vue.extend(DownloadButton)
-    const vm = new Ctor().$mount()
-    expect(vm.$el.querySelector('button').textContent).to.contain('Download')
-  })
-
-  it('should download correct items', () => {
-    // Todo
+    const vm = new Ctor({ view: 'daily' }).$mount()
+    expect(vm.$el.querySelector('#download').textContent).to.contain('Download')
   })
 })

@@ -114,18 +114,18 @@ export default {
     if (!local) {
       return {
         weekly: {
-          big_wins: ['', '', '', '', ''],
-          improve: ['', '', ''],
+          big_wins: {0: '', 1: '', 2: '', 3: '', 4: ''},
+          improve: {0: '', 1: '', 2: ''},
           upcomming_personal: '',
           upcomming_work: '',
           upcomming_family: '',
           upcomming_relationships: '',
-          looking_formward: ['', '', ''],
-          habits: ['', ''],
+          looking_formward: {0: '', 1: '', 2: ''},
+          habits: {0: '', 1: ''},
           learn_something_new: '',
           passion_project: '',
-          projects: ['', '', '', ''],
-          goals: ['', '', '', '', '']
+          projects: {0: '', 1: '', 2: '', 3: ''},
+          goals: {0: '', 1: '', 2: '', 3: '', 4: ''}
         }
       }
     }

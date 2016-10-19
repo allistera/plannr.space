@@ -7,22 +7,17 @@ import App from './App'
 
 Vue.use(VueRouter)
 
-var router = new VueRouter()
-
-router.map({
-  '/daily': {
-    component: Daily
-  },
-  '/weekly': {
-    component: Weekly
-  },
-  '/monthly': {
-    component: Monthly
-  }
+var router = new VueRouter({
+  routes: [
+    { path: '/daily', component: Daily },
+    { path: '/weekly', component: Weekly },
+    { path: '/monthly', component: Monthly },
+    { path: '/*', redirect: '/daily' }
+  ]
 })
 
-router.redirect({
-  '*': '/daily'
-})
-
-router.start(App, '#app')
+/* eslint-disable no-new */
+new Vue({
+  extends: App,
+  router
+}).$mount('#app')
