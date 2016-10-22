@@ -2,6 +2,8 @@
 
 > Daily, Weekly and Monthly Planner
 
+Inspired by [PandaPlanner](https://pandaplanner.com)
+
 ## Build Setup
 
 ``` bash
