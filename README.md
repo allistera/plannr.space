@@ -6,6 +6,8 @@
 
 Inspired by [PandaPlanner](https://pandaplanner.com)
 
+Master branch will automatically deploy to [plannr.space](https://plannr.space). 
+
 ## Build Setup
 
 ``` bash
