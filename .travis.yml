@@ -6,6 +6,7 @@ install:
 script:
     - npm run unit
 after_success:
+  - npm run build
   - test $TRAVIS_BRANCH = "master" && surge --project ./dist --domain plannr.space
 
 
