@@ -1,5 +1,7 @@
 # plannr.space
 
+[![Build Status](https://travis-ci.org/allistera/plannr.space.svg?branch=master)](https://travis-ci.org/allistera/plannr.space)
+
 > Daily, Weekly and Monthly Planner
 
 Inspired by [PandaPlanner](https://pandaplanner.com)
