@@ -1,50 +1,77 @@
 <template>
   <div class="timeline">
-    <div class="day">
-      <p><small>Mon</small> 17</p>
-      <div class="row daily"></div>
-      <div class="row weekly"></div>
-      <div class="row monthly no-right"></div>
+    <div class="previous">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </div>
-    <div class="day">
-      <p><small>Mon</small> 18</p>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row monthly no-left no-right"> </div>
-    </div>
-    <div class="day">
-      <p><small>Tue</small> 19</p>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row monthly no-left"> </div>
-    </div>
-    <div class="day current">
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"> </div>
-    </div>
-    <div class="day">
-      <p><small>Thu</small> 21</p>
-      <div class="row daily"></div>
-      <div class="row"></div>
-      <div class="row"> </div>
+
+    <div class="day" v-for="n in dates" v-bind:class="{ current: n.current }">
+
+      <p><small>{{n.day}}</small> {{n.date}}</p>
+
+      <div class="row daily" v-if="entries[n.date] && entries[n.date]['daily']"></div>
+      <div class="row" v-else></div>
+
+      <div class="row weekly" v-if="entries[n.date] && entries[n.date]['weekly']"></div>
+      <div class="row" v-else></div>
+
+      <div class="row monthly" v-if="entries[n.date] && entries[n.date]['monthly']"></div>
+      <div class="row" v-else></div>
 
     </div>
-    <div class="day">
-      <p><small>Fri</small> 22</p>
-    </div>
-    <div class="day">
-      <p><small>Sat</small> 23</p>
-    </div>
-    <div class="day">
-      <p><small>Sun</small> 24</p>
+
+    <div class="next" v-on:click="next">
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    dates: function () {
+      let dates = []
+      let n = 7
 
+      // current date
+      let current = new Date()
+      // Get date n days ago
+      let day = new Date()
+      day.setDate(day.getDate() - n)
+
+      for (let i = 0; i <= n * 2; i++) {
+        let result = new Date(day)
+        result.setDate(result.getDate() + i)
+        dates.push({
+          day: result.toLocaleString('en-us', {weekday: 'long'}),
+          date: result.getDate(),
+          current: (result.toDateString() === current.toDateString())
+        })
+      }
+      return dates
+    }
+  },
+  data: function () {
+    return {
+      entries: {
+        '4': {
+          daily: true,
+          weekly: true,
+          monthly: true
+        },
+        '6': {
+          daily: true,
+          weekly: false,
+          monthly: false
+        }
+      }
+    }
+  },
+  methods: {
+    next: function (event) {
+      let right = document.getElementsByClassName('timeline')[0].offsetLeft + 200
+      document.getElementsByClassName('timeline')[0].style['padding-right'] = right + 'px'
+    }
+  }
 }
 </script>
 
@@ -56,15 +83,55 @@ export default {
   background: white;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease;
+
   box-shadow: 0px 1px 3px 2px rgba(204,204,204,0.75);
+
+  .previous {
+    height: 120px;
+    left: 0;
+    width: 40px;
+    position: absolute;
+    background: linear-gradient(to right,  rgba(216,216,216,0.65) 0%,rgba(0,0,0,0) 100%);
+
+    &:hover {
+      background: white;
+      cursor: pointer;
+    }
+    i {
+      margin: 50px 0 0 10px;
+    }
+  }
+
+  .next {
+    height: 120px;
+    right: 0;
+    width: 40px;
+    position: absolute;
+    background: linear-gradient(to left,  rgba(216,216,216,0.65) 0%,rgba(0,0,0,0) 100%);
+
+    &:hover {
+      background: white;
+      cursor: pointer;
+    }
+    i {
+      margin: 50px 0 0 10px;
+    }
+  }
 
   .day {
     display: block;
     flex: auto;
     height: 120px;
+    min-width: 150px;
     border-right: 1px solid #F0F0F0;
     text-align: center;
     padding: 5px 0 0;
+    position: relative;
 
     p {
       font-size: 18px;
@@ -125,6 +192,7 @@ export default {
     box-shadow: 0px 1px 8px 5px rgba(204,204,204,0.75);
 
     z-index: 1;
+
   }
 }
 </style>
